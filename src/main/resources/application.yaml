@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ms-productos
+  datasource:
+    url: jdbc:mysql://localhost:3306/devgear_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 8081
