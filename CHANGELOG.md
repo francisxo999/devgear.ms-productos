@@ -3,3 +3,4 @@
 * v1.2.0: Configuración de Spring Security y validación JWT con Azure AD.
 * v1.2.1: Limpieza de código e imports sin uso en ProductoController.
 * v1.3.0: Creación de Dockerfile multi-etapa para despliegue en AWS.
+* v1.3.1: Hotfix en EC2 - Inclusión del servicio app-productos en docker-compose (puerto 8081), corrección de la conexión a base de datos (host db-devgear y esquema productos_db), actualización del emisor JWT a Azure AD v1.0 y relajación de permisos de acceso GET.

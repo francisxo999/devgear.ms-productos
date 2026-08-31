@@ -17,7 +17,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 // Solo Clientes y Admins pueden ver productos
-                .requestMatchers(HttpMethod.GET, "/api/productos/**").hasAnyRole("CLIENTE", "ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/productos/**").authenticated()
                 // Solo Admins pueden crear productos (Validación para código 403)
                 .requestMatchers(HttpMethod.POST, "/api/productos/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
