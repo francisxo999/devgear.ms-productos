@@ -2,7 +2,6 @@ package com.devgear.ms_productos.controller;
 
 import com.devgear.ms_productos.model.Producto;
 import com.devgear.ms_productos.repository.ProductoRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
