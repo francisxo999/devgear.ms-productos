@@ -2,3 +2,4 @@
 * v1.1.0: Creación de ProductoController, entidades y conexión a MySQL.
 * v1.2.0: Configuración de Spring Security y validación JWT con Azure AD.
 * v1.2.1: Limpieza de código e imports sin uso en ProductoController.
+* v1.3.0: Creación de Dockerfile multi-etapa para despliegue en AWS.
