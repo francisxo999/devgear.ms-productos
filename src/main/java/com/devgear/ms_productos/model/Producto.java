@@ -14,11 +14,7 @@ public class Producto {
     @Column(nullable = false, length = 500)
     private String nombre;
 
-<<<<<<< Updated upstream
     @Column(length = 2000)
-=======
-    @Column(length = 500)
->>>>>>> Stashed changes
     private String descripcion;
 
     @Column(nullable = false)
@@ -36,7 +32,6 @@ public class Producto {
     @Column(nullable = false)
     private Boolean activo = true;
 
-    // Constructores
     public Producto() {}
 
     public Producto(String nombre, String descripcion, BigDecimal precio, Integer stock, String categoria, String imagenUrl) {
@@ -49,7 +44,6 @@ public class Producto {
         this.activo = true;
     }
 
-    // Getters y Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
