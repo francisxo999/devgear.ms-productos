@@ -14,7 +14,11 @@ public class Producto {
     @Column(nullable = false, length = 500)
     private String nombre;
 
+<<<<<<< Updated upstream
     @Column(length = 2000)
+=======
+    @Column(length = 500)
+>>>>>>> Stashed changes
     private String descripcion;
 
     @Column(nullable = false)
@@ -23,11 +27,27 @@ public class Producto {
     @Column(nullable = false)
     private Integer stock;
 
+    @Column(nullable = false)
+    private String categoria;
+
     @Column(name = "imagen_url")
     private String imagenUrl;
 
+    @Column(nullable = false)
+    private Boolean activo = true;
+
     // Constructores
     public Producto() {}
+
+    public Producto(String nombre, String descripcion, BigDecimal precio, Integer stock, String categoria, String imagenUrl) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.stock = stock;
+        this.categoria = categoria;
+        this.imagenUrl = imagenUrl;
+        this.activo = true;
+    }
 
     // Getters y Setters
     public Long getId() { return id; }
@@ -45,6 +65,12 @@ public class Producto {
     public Integer getStock() { return stock; }
     public void setStock(Integer stock) { this.stock = stock; }
 
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
+
     public String getImagenUrl() { return imagenUrl; }
     public void setImagenUrl(String imagenUrl) { this.imagenUrl = imagenUrl; }
+
+    public Boolean getActivo() { return activo; }
+    public void setActivo(Boolean activo) { this.activo = activo; }
 }
