@@ -8,4 +8,5 @@
 * v1.3.3: Forzar IPv4 en la JVM (java.net.preferIPv4Stack) para evitar fallo de validación del issuer por IPv6 no ruteable dentro del contenedor.
 * v1.3.4: Amplía longitud de columnas nombre/descripcion en Producto, agrega GlobalExceptionHandler para respuestas de error controladas y fix de encoding UTF-8 en la conexión JDBC.
 * v1.4.0: Arquitectura DTOs, paginacion, borrado logico y gestion global de excepciones
-* v1.4.1: Captura IllegalArgumentException en GlobalExceptionHandler para responder 400 en vez de 500
+* v1.4.1: Captura IllegalArgumentException en GlobalExceptionHandler para responder 400 en vez de 500.
+* v1.5.0: Integración de RabbitMQ para mensajería asíncrona (configuración, publicación de eventos y listeners).
