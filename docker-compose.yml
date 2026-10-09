@@ -23,6 +23,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db-devgear:3306/productos_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+      RABBITMQ_HOST: ${RABBITMQ_HOST:-rabbitmq}
 
 volumes:
   db_data:
