@@ -11,3 +11,4 @@
 * v1.4.1: Captura IllegalArgumentException en GlobalExceptionHandler para responder 400 en vez de 500.
 * v1.5.0: Integración de RabbitMQ para mensajería asíncrona (configuración, publicación de eventos y listeners).
 * v1.5.1: Parametriza RABBITMQ_HOST en docker-compose para despliegue en AWS.
+* v1.6.0: Productor Kafka: POST /{id}/vista publica PRODUCTO_VISTO en navegacion.eventos (clave usuarioId, acks=1, sin bloquear si Kafka cae).

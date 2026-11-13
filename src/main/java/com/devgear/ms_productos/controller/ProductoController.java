@@ -3,6 +3,7 @@ package com.devgear.ms_productos.controller;
 import com.devgear.ms_productos.dto.ProductoRequestDTO;
 import com.devgear.ms_productos.dto.ProductoResponseDTO;
 import com.devgear.ms_productos.dto.StockUpdateDTO;
+import com.devgear.ms_productos.kafka.NavegacionProducer;
 import com.devgear.ms_productos.service.ProductoService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.*;
 public class ProductoController {
 
     private final ProductoService productoService;
+    private final NavegacionProducer navegacionProducer;
 
-    public ProductoController(ProductoService productoService) {
+    public ProductoController(ProductoService productoService, NavegacionProducer navegacionProducer) {
         this.productoService = productoService;
+        this.navegacionProducer = navegacionProducer;
     }
 
     @GetMapping
@@ -32,6 +36,18 @@ public class ProductoController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductoResponseDTO> obtenerPorId(@PathVariable Long id) {
         return ResponseEntity.ok(productoService.obtenerPorId(id));
+    }
+
+    // El frontend lo llama cuando el usuario abre/mira un producto.
+    // Publica PRODUCTO_VISTO en Kafka (tópico navegacion.eventos, clave = usuario).
+    // Es un endpoint aparte de GET /{id} porque ms-carrito también consulta GET /{id}
+    // para validar stock, y eso no es "mirar" un producto.
+    @PostMapping("/{id}/vista")
+    public ResponseEntity<Void> registrarVista(@PathVariable Long id, JwtAuthenticationToken auth) {
+        ProductoResponseDTO producto = productoService.obtenerPorId(id);
+        String usuarioId = auth.getToken().getClaimAsString("oid");
+        navegacionProducer.publicar("PRODUCTO_VISTO", usuarioId, producto.id(), producto.categoria(), null);
+        return ResponseEntity.accepted().build();
     }
 
     @PostMapping

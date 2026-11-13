@@ -29,6 +29,19 @@ spring:
     password: guest
     virtual-host: /
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: "1"            # navegacion.eventos tolera perder algún click; prioriza velocidad
+      retries: 3
+      properties:
+        max.block.ms: 2000          # si Kafka no responde, no cuelga la petición HTTP
+        delivery.timeout.ms: 5000
+        request.timeout.ms: 3000
+        linger.ms: 5
+
 management:
   endpoints:
     web:
